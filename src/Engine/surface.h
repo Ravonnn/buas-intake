@@ -3,7 +3,7 @@
 
 #pragma once
 
-namespace Tmpl8 {
+namespace Celes {
 
 constexpr int RedMask = 0xff0000;
 constexpr int GreenMask = 0x00ff00;
@@ -42,6 +42,7 @@ public:
 	Surface( int a_Width, int a_Height, Pixel* a_Buffer, int a_Pitch );
 	Surface( int a_Width, int a_Height );
 	Surface( char* a_File );
+	Surface();
 	~Surface();
 	// member data access
 	Pixel* GetBuffer() { return m_Buffer; }
@@ -54,6 +55,9 @@ public:
 	void InitCharset();
 	void SetChar( int c, char* c1, char* c2, char* c3, char* c4, char* c5 );
 	void Centre( char* a_String, int y1, Pixel color );
+	/**
+		Print a text string to the inserted x and y coordinates with a desired color
+	*/
 	void Print( char* a_String, int x1, int y1, Pixel color );
 	void Clear( Pixel a_Color );
 	void Line( float x1, float y1, float x2, float y2, Pixel color );
@@ -99,9 +103,15 @@ public:
 	Sprite( Surface* a_Surface, unsigned int a_NumFrames );
 	~Sprite();
 	// Methods
+	/**
+	Draw the current sprite
+	*/
 	void Draw( Surface* a_Target, int a_X, int a_Y );
 	void DrawScaled( int a_X, int a_Y, int a_Width, int a_Height, Surface* a_Target );
 	void SetFlags( unsigned int a_Flags ) { m_Flags = a_Flags; }
+	/**
+	Set frame for the current sprite
+	*/
 	void SetFrame( unsigned int a_Index ) { m_CurrentFrame = a_Index; }
 	unsigned int GetFlags() const { return m_Flags; }
 	int GetWidth() { return m_Width; }
@@ -137,4 +147,4 @@ private:
 	int* m_Offset, *m_Width, *m_Trans, m_Height, m_CY1, m_CY2;
 };
 
-}; // namespace Tmpl8
+}; // namespace Celes

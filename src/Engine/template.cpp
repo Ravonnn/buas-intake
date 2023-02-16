@@ -29,7 +29,7 @@ extern "C"
 #include "wglext.h"
 #endif
 
-namespace Tmpl8 { 
+namespace Celes { 
 
 double timer::inv_freq = 1;
 
@@ -146,7 +146,7 @@ void NotifyUser( char* s )
 
 }
 
-using namespace Tmpl8;
+using namespace Celes;
 using namespace std;
 
 #ifdef ADVANCEDGL
@@ -293,6 +293,7 @@ void swap()
 
 int main( int argc, char **argv ) 
 {  
+	SDL_SetHintWithPriority(SDL_HINT_RENDER_VSYNC, "0", SDL_HINT_OVERRIDE);
 #ifdef _MSC_VER
     if (!redirectIO())
         return 1;

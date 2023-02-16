@@ -1,40 +1,47 @@
 #include "game.h"
-#include "pch.h"
 
 
-namespace Tmpl8
+namespace Celes
 {
-	// -----------------------------------------------------------
-	// Initialize the application
-	// -----------------------------------------------------------
+
+	Surface* spriteSheet = new Surface("assets/nc2tiles.png");
+	
+	/*Sprite playerIdle(new Surface("assets/PlayerIdle"), 8);*/
+
 	void Game::Init()
 	{
+
+		m_TileMap = new TileMap(m_Renderer);
+		m_TileMap->LoadMap("first-level.csv", spriteSheet);
+		/*m_Player = new Player();*/
 	}
-	
-	// -----------------------------------------------------------
-	// Close down application
-	// -----------------------------------------------------------
+
 	void Game::Shutdown()
 	{
 	}
 
-	static Sprite rotatingGun(new Surface("assets/aagun.tga"), 36);
-	static int frame = 0;
-
-	// -----------------------------------------------------------
-	// Main application tick function
-	// -----------------------------------------------------------
 	void Game::Tick(float deltaTime)
 	{
 		// clear the graphics window
-		screen->Clear(0);
-		// print something in the graphics window
-		screen->Print("hello world", 2, 2, 0xffffff);
-		// print something to the text window
-		printf("this goes to the console window.\n");
-		// draw a sprite
-		rotatingGun.SetFrame(frame);
-		rotatingGun.Draw(screen, 100, 100);
-		if (++frame == 36) frame = 0;
+
+		switch (m_GameState)
+		{
+		case Celes::GameState::MENU:
+			break;
+		case Celes::GameState::GAME:
+			break;
+		case Celes::GameState::DEAD:
+			break;
+		case Celes::GameState::TILEMAPEDITOR:
+			break;
+		default:
+			break;
+		}
+
+		m_Renderer->Clear(0);
+		m_TileMap->DrawMap(2);
+		/*m_Player->OnUpdate(deltaTime);
+
+		m_Player->Draw(m_Renderer);*/
 	}
-};
+}

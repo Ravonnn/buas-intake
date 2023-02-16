@@ -13,7 +13,7 @@
 constexpr int ScreenWidth = 800;
 constexpr int ScreenHeight = 512;
 // #define FULLSCREEN
-// #define ADVANCEDGL	// faster if your system supports it. Switches SDL2's texture buffer out for OpenGL texture buffer with mappings to CPU Memory. 
+#define ADVANCEDGL	// faster if your system supports it. Switches SDL2's texture buffer out for OpenGL texture buffer with mappings to CPU Memory. 
 
 static const char* TemplateVersion = "Template_v2019.08";
 
@@ -33,7 +33,7 @@ typedef __int64 int64;
 typedef unsigned __int64 uint64;
 typedef unsigned int uint;
 
-namespace Tmpl8 {
+namespace Celes {
 
 template <typename T>
 constexpr T Min(T a, T b) { return (a > b) ? b : a; }
@@ -79,7 +79,7 @@ class vec2 // adapted from https://github.com/dcow/RayTracer
 {
 public:
 	union { struct { float x, y; }; float cell[2]; };
-	vec2() {}
+	vec2() {};
 	vec2( float v ) : x( v ), y( v ) {}
 	vec2( float x, float y ) : x( x ), y( y ) {}
 	vec2 operator - () const { return vec2( -x, -y ); }
@@ -264,4 +264,4 @@ inline bool BadFloat(float x)
 	return ((*reinterpret_cast<uint*>(&x) & 0x7f000000) == 0x7f000000);
 }
 	
-}; // namespace Tmpl8
+}; // namespace Celes

@@ -4,7 +4,7 @@
 #include "../pch.h"
 #include "FreeImage.h"
 
-namespace Tmpl8 {
+namespace Celes {
 
 void NotifyUser( char* s );
 char Surface::s_Font[51][5][6];	
@@ -43,6 +43,11 @@ Surface::Surface( char* a_File )
 	}
 	else fclose( f );
 	LoadImage( a_File );
+}
+
+Surface::Surface()
+{
+
 }
 
 void Surface::LoadImage( char* a_File )
@@ -555,4 +560,4 @@ void Font::Print( Surface* a_Target, char* a_Text, int a_X, int a_Y, bool clip )
 	}
 }
 
-}; // namespace Tmpl8
+}; // namespace Celess
